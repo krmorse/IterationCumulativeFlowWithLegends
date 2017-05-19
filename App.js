@@ -3,16 +3,24 @@ Ext.define('CustomApp', {
     componentCls: 'app',
     layout: 'fit',
 
-    config: {
-        defaultSettings: {
-            show_legend: true
-        }
-    },
-
     afterRender: function () {
         this.callParent(arguments);
 
-        var showChrome = this.getSetting('show_legend') ? 'show' : 'hide';
+        this._renderReport();
+    },
+
+    onTimeboxScopeChange: function() {
+        this.callParent(arguments);
+
+        this._renderReport();
+    },
+
+    _renderReport: function() {
+        if (this.down('rallystandardreport')) {
+            this.down('rallystandardreport').destroy();
+        }
+
+        var showChrome = true;
         var timeboxScope = this.getContext().getTimeboxScope();
         var standardReportConfig = {
             xtype: 'rallystandardreport',
@@ -33,7 +41,7 @@ Ext.define('CustomApp', {
         if (timeboxScope && timeboxScope.getType() === 'iteration') {
             standardReportConfig.iteration = timeboxScope.getRecord().raw;
         }
-        
+
         this.add(standardReportConfig);
     }
 });
