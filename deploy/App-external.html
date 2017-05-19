@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IterationCumulativeFlowWithLegends</title>
+
+    <script type="text/javascript" src="https://rally1.rallydev.com/apps/2.1/sdk.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function () {
+                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",layout:"fit",config:{defaultSettings:{show_legend:!0}},afterRender:function(){this.callParent(arguments);var showChrome=this.getSetting("show_legend")?"show":"hide",timeboxScope=this.getContext().getTimeboxScope(),standardReportConfig={xtype:"rallystandardreport",project:Rally.util.Ref.getRelativeUri(this.getContext().getProject()),projectScopeUp:this.getContext().getProjectScopeUp(),projectScopeDown:this.getContext().getProjectScopeDown(),height:this.getHeight(),width:this.getWidth(),reportConfig:{report:Rally.ui.report.StandardReport.Reports.IterationCumulativeFlowDiagram,legend:showChrome,subchart:showChrome,x_axis_label:showChrome,y_axis_label:showChrome}};timeboxScope&&"iteration"===timeboxScope.getType()&&(standardReportConfig.iteration=timeboxScope.getRecord().raw),this.add(standardReportConfig)}});
+
+            Rally.launchApp('CustomApp', {
+                name:"IterationCumulativeFlowWithLegends",
+	            parentRepos:""
+            });
+
+        });
+    </script>
+
+
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+</body>
+</html>
