@@ -2,6 +2,7 @@ Ext.define('CustomApp', {
     extend: 'Rally.app.App',
     componentCls: 'app',
     layout: 'fit',
+    autoScroll: false,
 
     afterRender: function () {
         this.callParent(arguments);
