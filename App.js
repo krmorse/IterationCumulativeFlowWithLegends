@@ -20,14 +20,14 @@ Ext.define('CustomApp', {
             this.down('rallystandardreport').destroy();
         }
 
-        var showChrome = true;
+        var showChrome = 'show';
         var timeboxScope = this.getContext().getTimeboxScope();
         var standardReportConfig = {
             xtype: 'rallystandardreport',
             project: Rally.util.Ref.getRelativeUri(this.getContext().getProject()),
             projectScopeUp: this.getContext().getProjectScopeUp(),
             projectScopeDown: this.getContext().getProjectScopeDown(),
-            height: this.getHeight(),
+            height: this.getHeight() + 150,
             width: this.getWidth(),
             reportConfig: {
                 report: Rally.ui.report.StandardReport.Reports.IterationCumulativeFlowDiagram,
